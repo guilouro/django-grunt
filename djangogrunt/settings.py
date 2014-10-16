@@ -26,6 +26,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# for debug tag in templates
+INTERNAL_IPS = ('127.0.0.1')
+
 
 # Application definition
 
@@ -36,8 +39,22 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
     'core',
 )
+
+
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     "django.contrib.auth.context_processors.auth",
+#     "django.core.context_processors.debug",
+#     "django.core.context_processors.i18n",
+#     "django.core.context_processors.media",
+#     "django.core.context_processors.static",
+#     "django.core.context_processors.tz",
+#     "django.contrib.messages.context_processors.messages",
+#     # 'core.context_processors.debug',
+# )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,6 +65,37 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_ENABLED = True
+COMPRESS_OUTPUT_DIR = ''
+
+COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.SlimItFilter']
+COMPRESS_CSS_FILTERS = [
+     #creates absolute urls from relative ones
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    #css minimizer
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/less', 'lessc {infile} {outfile}'),
+    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/stylus', 'stylus < {infile} > {outfile}'),
+    ('text/foobar', 'path.to.MyPrecompilerFilter'),
+)
+
+
 
 ROOT_URLCONF = 'djangogrunt.urls'
 
@@ -82,5 +130,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_ROOT = BASE_DIR.child('static')
-print STATIC_ROOT
 STATIC_URL = '/static/'

@@ -1,13 +1,7 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Teste Django grunt</title>
-	<link rel="stylesheet" href="{% static "css/style.css" %}">
-</head>
-<body>
-	
+
+{% block content %}
 	<div class="col">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora dolore similique culpa nemo numquam? Nesciunt ad eos reiciendis mollitia sit, magnam enim, quas, facere nihil perspiciatis fugit, ab quod. Maiores.
 	</div>
@@ -20,8 +14,6 @@
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora dolore similique culpa nemo numquam? Nesciunt ad eos reiciendis mollitia sit, magnam enim, quas, facere nihil perspiciatis fugit, ab quod. Maiores.
 	</div>
 	
-	{% if debug %}
-		teste
-	{% endif %}
-</body>
-</html>
+{% endblock content %}
+
+Gui
