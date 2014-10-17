@@ -13,5 +13,5 @@ Scripts
 .DS_Store
 .env
 djangogrunt/staticfiles
-node_modules
-.sass-cache
+src/node_modules
+src/.sass-cache
