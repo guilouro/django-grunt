@@ -1,2 +1,5 @@
 default: 
-	- 'watch'
+  - 'watch'
+b:
+  - 'concurrent:build'
+  - 'concurrent:lint'

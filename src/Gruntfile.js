@@ -11,8 +11,10 @@ module.exports = function(grunt) {
     require('load-grunt-config')(grunt, {
         configPath: path.join(process.cwd(), '_grunt'),
         data: { 
+            pkg: grunt.file.readJSON("package.json"),
             path: {
-                src: 'assets/'
+                src: 'assets/',
+                dest: '../core/static/'
             }
         }
     });

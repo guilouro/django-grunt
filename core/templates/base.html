@@ -5,24 +5,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Teste Django grunt</title>
+	
 	{% compress css %}
 		<link rel="stylesheet" href="{% static "css/style.css" %}">
-
 		{% block styles %}{% endblock styles %}
-
 	{% endcompress %}
 
 </head>
 <body>
 	
 	{# content #}
-	{% block content %}{% endblock content %}
-	
+	{% block content %}{% endblock content %}	
 
 	{# grunt livereload #}
 	{% if debug %}
 		<script src="//localhost:35729/livereload.js"></script>
 	{% endif %}
+	
+	{# javascript #}
+	{% compress js %}
+		
+		{# inner js #}
+		{% block js %}{% endblock js %}
+
+		<script src="{% static "js/all.min.js" %}"></script>
+	{% endcompress %}
 
 </body>
 </html>

@@ -12,6 +12,6 @@ Scripts
 *.sqlite3
 .DS_Store
 .env
-djangogrunt/staticfiles
+djangogrunt/static/
 src/node_modules
 src/.sass-cache
